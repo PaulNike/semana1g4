@@ -32,4 +32,19 @@ public class UsuariosServiceImpl implements UsuariosService {
     public UsuariosEntity buscarPorId(Integer id) {
         return usuariosRepository.findById(Long.valueOf(id)).get();
     }
+
+    @Override
+    public List<UsuariosEntity> buscarPorNombre(String nombres) {
+        return null;
+    }
+
+    @Override
+    public UsuariosEntity updateUsuario(Long id, UsuariosEntity request) {
+        return null;
+    }
+
+    @Override
+    public UsuariosEntity deleteUusuario(Long id) {
+        return null;
+    }
 }

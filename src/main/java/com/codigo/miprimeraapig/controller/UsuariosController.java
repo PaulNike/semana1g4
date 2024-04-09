@@ -40,5 +40,12 @@ public class UsuariosController {
         return ResponseEntity.ok(usuario);
     }
 
+    //YO COMO USUARIO, QUIERO UN ENDPOINT QUE ME DEVUELVA LA LISTA DE USUARIOS QUE EXISTAN POR UN NOMBRE,
+    // PARA PODER INDENTIFICAR A LOS USUARIOS MEDIANTE SU NOMBRE
+    @GetMapping("/buscarxnombres/{nombres}")
+    public ResponseEntity<List<UsuariosEntity>> buscarPorNombres(@PathVariable String nombres){
+        List<UsuariosEntity> usuariosEntity = usuariosService.buscarPorNombre(nombres);
+        return ResponseEntity.ok(usuariosEntity);
+    }
 
 }
