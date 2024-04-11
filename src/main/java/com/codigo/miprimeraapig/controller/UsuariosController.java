@@ -2,9 +2,11 @@ package com.codigo.miprimeraapig.controller;
 
 import com.codigo.miprimeraapig.entity.UsuariosEntity;
 import com.codigo.miprimeraapig.service.UsuariosService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,7 +51,8 @@ public class UsuariosController {
     }
 
     @PutMapping("/updateusuario/{id}")
-    public ResponseEntity<UsuariosEntity> actualizar(@PathVariable Long id, @RequestBody UsuariosEntity entity){
+    public ResponseEntity<UsuariosEntity> actualizar(@Valid @PathVariable Long id,
+                                                     @RequestBody UsuariosEntity entity){
         UsuariosEntity usuariosEntity = usuariosService2.updateUsuario(id,entity);
         return ResponseEntity.ok(usuariosEntity);
     }

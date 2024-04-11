@@ -6,6 +6,7 @@ import com.codigo.miprimeraapig.service.UsuariosService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuariosServiceImpl implements UsuariosService {
@@ -40,8 +41,22 @@ public class UsuariosServiceImpl implements UsuariosService {
 
     @Override
     public UsuariosEntity updateUsuario(Long id, UsuariosEntity request) {
-        return null;
-    }
+           /* Optional<UsuariosEntity> before_entity = usuariosRepository.findById(id);
+            if(before_entity.isPresent()){
+                usuario.setId(id);
+                if(usuario.getNombres()==null){
+                    usuario.setNombres(before_entity.get().getNombres());
+                }
+                if(usuario.getApellidos()==null){
+                    usuario.setApellidos(before_entity.get().getApellidos());
+                }
+                if(usuario.getEstado()==null){
+                    usuario.setEstado(before_entity.get().getEstado());
+                }
+                return repository.save(usuario);
+            }*/
+            return null;
+        }
 
     @Override
     public UsuariosEntity deleteUusuario(Long id) {
