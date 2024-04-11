@@ -9,6 +9,5 @@ import java.util.List;
 public interface UsuariosRepository extends JpaRepository<UsuariosEntity, Long> {
 
     List<UsuariosEntity> findByNombres(String nombres);
-    List<UsuariosEntity> findByEstadoAndId(Integer estado);
-    //List<UsuariosEntity> findByApellidos(String nombres);
+
 }

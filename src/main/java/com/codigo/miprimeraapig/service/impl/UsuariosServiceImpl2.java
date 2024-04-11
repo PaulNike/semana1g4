@@ -41,26 +41,34 @@ public class UsuariosServiceImpl2 implements UsuariosService {
         boolean existe = usuariosRepository.existsById(id);
         if(existe){
             //recupero mi usuario
-            Optional usuario = usuariosRepository.findById(id);
+            Optional<UsuariosEntity> usuario = usuariosRepository.findById(id);
 
-            // setear datos a actualizar
+            // setear datos a actualizar spcrearusuario(?,?,?,?,?)
+            //
             //actualizar
-            UsuariosEntity usuariosEntity = usuariosRepository.save(getUpdate((UsuariosEntity) usuario.get(),request));
+            UsuariosEntity usuariosEntity = usuariosRepository.save(getUpdate(usuario.get(),request));
 
+            return usuariosEntity;
         }
         return null;
     }
 
     //seteo los datos a cambiar
-    private UsuariosEntity getUpdate(UsuariosEntity update, UsuariosEntity request){
-        update.setNombres(request.getNombres());
-        update.setApellidos(request.getApellidos());
-        update.setEstado(request.getEstado());
-        return update;
+    private UsuariosEntity getUpdate(UsuariosEntity usuarioRecuperado, UsuariosEntity usuarioDesdeController){
+        usuarioRecuperado.setNombres(usuarioDesdeController.getNombres());
+        usuarioRecuperado.setApellidos(usuarioDesdeController.getApellidos());
+        usuarioRecuperado.setEstado(usuarioDesdeController.getEstado());
+        return usuarioRecuperado;
     }
 
     @Override
     public UsuariosEntity deleteUusuario(Long id) {
+        Optional<UsuariosEntity> usuario = usuariosRepository.findById(id);
+        if(usuario.isPresent()){
+            usuario.get().setEstado(0);
+            return usuariosRepository.save(usuario.get());
+        }
+
         return null;
     }
 }
